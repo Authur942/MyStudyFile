@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    <!-- 如果加上双引号就是解析成字符串，当你不加上双引号的时候就会解析成变量 -->
+    <h2 :class="[active,line]">{{message}}</h2>
+    <h2 :class="getClasses()">{{message}}</h2>
+  </div>
+  <script src='../js/vue.js'></script>
+  <script>
+    const App = new Vue({
+      el: '#app',
+      data:{
+        message: '大家好！我是Vue！',
+        active: 'aaaa',
+        line: 'bbbb'
+      },
+      methods: {
+        getClasses:function(){
+          return [this.active,this.line]
+        }
+      }
+    })
+  </script>
+</body>
+</html>

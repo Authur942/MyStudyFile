@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <label for="aaa" v-if="istrue">用户登录
+      <input id="aaa" type="text" placeholder="请输入用户名" key="a">
+    </label>
+    <label for="bbb" v-else>邮箱登录
+      <input id="bbb" type="text" placeholder="请输入邮箱" key="b">
+    </label>
+    <button @click="qiehuan">点击切换</button>
+  </div>
+  <script src='../js/vue.js'></script>
+  <script>
+    const App = new Vue({
+      el: '#app',
+      data:{
+        istrue: true
+      },
+      methods: {
+        qiehuan(){
+          return this.istrue = !this.istrue
+        }
+      }
+    })
+  </script>
+</body>
+</html>

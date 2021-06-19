@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <!-- 这是第一种方式，用v-if指令判断-->
+    <h2 v-if="count>=90">成绩优秀</h2>
+    <h2 v-else-if="count>=80">成绩良好</h2>
+    <h2 v-else-if="count>=60">成绩合格</h2>
+    <h2 v-else>成绩不合格</h2>
+    <!-- 这是第二种方式，当判断逻辑复杂时建议使用计算属性来判断-->
+    <h1>{{result}}</h1>
+  </div>
+  <script src='../js/vue.js'></script>
+  <script>
+    const App = new Vue({
+      el: '#app',
+      data:{
+        count: 60
+      },
+      computed: {
+        result(){
+          let showMessage = '';
+          if (this.count>=90) {
+            showMessage = '成绩优秀'
+          }else if (this.count>=80) {
+            showMessage = '成绩良好'
+          }else if (this.count>=60) {
+            showMessage = '成绩合格'
+          }else{
+            showMessage = '成绩不合格'
+          }
+          return showMessage
+        }
+      }
+    })
+  </script>
+</body>
+</html>

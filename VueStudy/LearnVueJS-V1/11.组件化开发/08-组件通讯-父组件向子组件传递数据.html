@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>vue html demo</title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 子组件所创建的属性（变量）通过属性绑定的方法，将其绑定为父组件传来的变量 -->
+			<cpn :cmessage='message' :cmovies='movies'></cpn>
+		</div>
+
+		<template id="cpn">
+			<div>
+				<h2>{{cmessage}}</h2>
+				<ul>
+					<li v-for='item in cmovies'>{{item}}</li>
+				</ul>
+			</div>
+		</template>
+		<script src='../js/vue.js'></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: '大家好，我是vue！！！',
+					movies: ['海王','海贼王','海尔兄弟']
+				},
+				methods:{
+
+				},
+				components: {
+					'cpn': {
+						template: '#cpn',
+						// props: ['cmovies','cmessage'],
+						// 也可以写成对象，进而对变量进行类型限制。
+						// 子组件使用props创建用于接收父组件传递过来的数据的变量
+						props: {
+							// 1.类型限制
+							// cmovies: Array,
+							// cmessage: String
+
+							// 2.提供一些默认值，以及必传值
+							cmessage: {
+								type: String,
+								default: 'aaaa', //当传递过来的数据为空时所设定的默认值
+								required: true //必传值
+							},
+							// 类型是对象或者数组时，默认值必须是一个函数
+							cmovies: {
+								type: Array,
+								default(){
+									return []
+								} 
+							}
+						},
+						data () {
+							return {
+								
+							}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

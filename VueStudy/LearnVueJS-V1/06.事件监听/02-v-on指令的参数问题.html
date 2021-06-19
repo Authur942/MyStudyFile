@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <h2>{{conter}}</h2>
+    <!-- 在事件当中本身带了一个参数，这个参数默认为用户对网页的操作，比如简单的鼠标滑动、点击等事件 -->
+    <button v-on:click="btnIncrease">增加</button>
+    <!-- 如果在方法中定义了参数，那么调用方法是加上双引号，则参数的值为undefined -->
+    <button @click="btnDecrese()">减少</button>
+  </div>
+  <script src='../js/vue.js'></script>
+  <script>
+    const App = new Vue({
+      el: '#app',
+      data:{
+        conter: 0
+      },
+      methods: {
+        btnIncrease(){
+          console.log('++++++',this.conter++,event);
+        },
+        btnDecrese(event){
+          console.log('------',this.conter--,event);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

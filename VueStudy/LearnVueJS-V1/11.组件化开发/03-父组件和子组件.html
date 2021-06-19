@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <cpn1></cpn1>
+    <cpn2></cpn2>
+  </div>
+  <script src='../js/vue.js'></script>
+  <script>
+    // 需要格外注意的是：子组件需要先创建组件构造器后写父组件，把子组件构造器注册在父组件中，
+    // 如果先创建父组件，根据dom解析时会报在父组件初始化前为找到子组件
+    // 创建组件构造器
+    const cpn2 = Vue.extend({
+      template: `
+        <div>
+          <h2>我是标题2</h2>
+          <p>我是内容，呵呵呵</p>
+        </div>`
+    })
+    const cpn1 = Vue.extend({
+      template: `
+        <div>
+          <h2>我是标题1</h2>
+          <p>我是内容，哈哈哈</p>
+          <cpn2></cpn2>
+        </div>`,
+      components: {
+        'cpn2': cpn2
+      }
+    })
+    Vue.component('cpn1', cpn1)
+    
+    const app = new Vue({
+      el: '#app',
+      data:{
+        message: '大家好！我是Vue！'
+      },
+      components: {
+        // 也可以注册在这里
+        // 'cpn1': cpn1
+      }
+    })
+  </script>
+</body>
+</html>

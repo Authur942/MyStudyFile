@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <cpn1></cpn1>
+    <cpn2></cpn2>
+    <cpn3></cpn3>
+  </div>
+  <script src="../js/vue.js"></script>
+  <script type="text/x-template" id="cpn3">
+    <div>
+      <h1>我是组件cpn3</h1>
+    </div>
+  </script>
+  <script>
+    // 创建组件普通写法
+    const cpn1 = Vue.extend({
+      template: `
+      <div>
+        <h1>我cpn1组件</h1>
+      </div>
+      `
+    })
+    Vue.component('cpn1',cpn1)
+
+    // 创建组件语法糖写法
+    Vue.component('cpn2',{
+      template: `
+      <div>
+        <h1>我cpn2组件</h1>
+      </div>
+      `
+    })
+
+    // 创建组件模板抽离写法
+    Vue.component('cpn3',{
+      template: '#cpn3'
+    })
+
+    const app = new new Vue({
+      el: '#app',
+      data: {
+        message: '我是Vue实例'
+      }
+    })
+  </script>
+</body>
+</html>

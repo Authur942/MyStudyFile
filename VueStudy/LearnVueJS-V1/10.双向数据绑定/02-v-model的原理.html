@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <!-- v-model原理的展示 -->
+    <label for="">
+      <input type="text" :value="message" @input="message = $event.target.value">
+    </label>
+    <button @click="btnClick">按钮</button>
+    <h2>{{message}}</h2>
+    <!-- 示例1 -->
+    <label for="">
+      <input type="text" :value="message" @input="inputChange2">
+    </label>
+  </div>
+  <script src='../js/vue.js'></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data:{
+        message: '大家好！我是Vue！'
+      },
+      methods: {
+        // inputChange(event){
+        // 当用户对页面进行操作的时候，方法中会产生一个新的参数叫做event
+        //   this.message = event.target.value
+        // }
+        btnClick(){
+          console.log('------',event);
+        },
+        inputChange2(){
+          console.log('------',event);
+        }
+      }
+    })
+  </script>
+</body>
+</html>

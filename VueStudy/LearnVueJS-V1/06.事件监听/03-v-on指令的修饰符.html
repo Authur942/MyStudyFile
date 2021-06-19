@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <!-- 这是v-on指令没有修饰符的情况下，会向上进行冒泡触发事件 -->
+    <div @click="divEvent">
+      <span @click="spanEvent">
+        <button @click="btnEvent">点我会冒泡</button>
+      </span>
+    </div>
+
+    <!-- .stop修饰符，阻止冒泡 -->
+    <div @click="divEvent">
+      <span @click="spanEvent">
+        <button @click.stop="btnEvent">点我不会冒泡</button>
+      </span>
+    </div>
+
+    <!-- .prevent修饰符，防止默认行为 -->
+    <div>
+      <form action="baidu">
+        <input type="submit" value="提交" @click.prevent="submitConsole">
+      </form>
+    </div>
+
+    <!-- @keyup.enter修饰符，当用户按了特定键才会触发-->
+    <div>
+      <button @keyup.enter="onEnter">点我然后敲Enter键</button>
+    </div>
+
+    <!-- .left/.right修饰符，当用户点击鼠标 左键/右键 才会触发 -->
+    <div>
+      <button @click.right="rightClick">鼠标右键点我呀</button>
+    </div>
+  </div>
+  <script src='../js/vue.js'></script>
+  <script>
+    const App = new Vue({
+      el: '#app',
+      data:{
+        message: '大家好！我是Vue！'
+      },
+      methods: {
+        btnEvent(){
+          console.log('我是btn事件');
+        },
+        divEvent(){
+          console.log('我是div事件');
+        },
+        spanEvent(){
+          console.log('我是span事件');
+        },
+        submitConsole(){
+          console.log('submitConsole');
+        },
+        onEnter(){
+          console.log('敲了Enter我才会出现哦！！！');
+        },
+        rightClick(){
+          console.log('点击鼠标右键我才会出现哦！！');
+        }
+      }
+    })
+  </script>
+</body>
+</html>

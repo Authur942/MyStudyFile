@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <h2 v-for="item in letters">{{item}}</h2>
+    <!-- <h2 v-for="item in letters2">{{item}}</h2> -->
+    <button @click='btnEvent'>按钮</button>
+  </div>
+  <script src='../js/vue.js'></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data:{
+        letters: ['a','b','c','d','e','f','g'],
+        letters2: ['a','c','d','b','g','e','f']
+      },
+      methods: {
+        btnEvent(){
+          // 1.push() 在数组的尾部追加一个或多个元素
+          // this.letters.push('aaa')
+
+          // 2.pop() 删除数组中的最后一个元素
+          // this.letters.pop()
+
+          // 3.shift() 在数组的头部删除一个元素
+          // this.letters.shift()
+
+          // 4.unshift() 在数组的头部追加一个或多个元素
+          // this.letters.unshift('aaa')
+
+          // 5.splice()：可以在数组中添加元素/删除元素/替换元素
+          // --(从哪里开始，删除几个元素，添加什么元素)
+          // this.letters.splice(2,1,'bbb')
+
+          // --如果不设置删除元素个数，则全部删除
+          // this.letters.splice(2)
+
+          // --如果需要添加或替换某个元素则需要删除项设置为0
+          // this.letters.splice(2,'aaa') //错误
+          // this.letters.splice(2,0,'aaa') //正确
+
+          // 6.sort(): 重新排序
+          // this.letters2.sort()
+
+          // 7.reverse()：反转
+          // this.letters.reverse()
+          // split() 将字符串进行分割操作
+
+          // 8.注意：通过索引值改变数组中的值
+          // this.letters[0] = 'bbbbb' 这种方法无法实现响应式，后台数据更改了但是vue不会重新渲染模板
+          // this.letters.splice(0,1,'bbbbb')
+          // vue本身的set()函数也可以，（要修改的对象，索引值，修改后的值）
+          Vue.set(this.letters,0,'bbbbb')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

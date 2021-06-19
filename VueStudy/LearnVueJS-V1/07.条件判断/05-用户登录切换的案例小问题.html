@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <!-- 在vue中的隐藏机制中，处于性能的考虑会将之前的模板进行复用 -->
+    <!-- 所以为了解决这种复用问题呢，key属性相当于为组件设置特定的标识符 -->
+    <span v-if="isUser">
+      <label for="username">用户登录</label>
+      <input id="username" type="text" placeholder="请输入用户名" key="a">
+    </span>
+    <span v-else>
+      <label for="email">邮箱登录</label>
+      <input id="email" type="text" placeholder="请输入邮箱" key="b">
+    </span>
+    <button @click="qiehuan">点击切换</button>
+  </div>
+  <script src='../js/vue.js'></script>
+  <script>
+    const App = new Vue({
+      el: '#app',
+      data:{
+        isUser: true
+      },
+      methods: {
+        qiehuan(){
+          return this.isUser = !this.isUser
+        }
+      }
+    })
+  </script>
+</body>
+</html>
